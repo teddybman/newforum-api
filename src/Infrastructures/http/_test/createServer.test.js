@@ -39,7 +39,7 @@ describe('HTTP server', () => {
   });
 
   describe('when GET /', () => {
-    it('should return 200 and say hello world', async () => {
+    it('should return 200 and say hello world!', async () => {
       const server = await createServer({});
 
       const response = await server.inject({
