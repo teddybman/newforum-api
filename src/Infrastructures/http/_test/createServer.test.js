@@ -15,21 +15,6 @@ describe('HTTP server', () => {
     expect(response.statusCode).toEqual(404);
   });
 
-  describe('when GET /', () => {
-    it('should return 200 and say hello world', async () => {
-      const server = await createServer({});
-
-      const response = await server.inject({
-        method: 'GET',
-        url: '/',
-      });
-
-      const responseJson = JSON.parse(response.payload);
-      expect(responseJson.statusCode).toEqual(200);
-      expect(responseJson.value).toEqual('Hello World!');
-    });
-  });
-
   it('should handle server error correctly', async () => {
     // Arrange
     const requestPayload = {
@@ -51,5 +36,20 @@ describe('HTTP server', () => {
     expect(response.statusCode).toEqual(500);
     expect(responseJson.status).toEqual('error');
     expect(responseJson.message).toEqual('terjadi kegagalan pada server kami');
+  });
+
+  describe('when GET /', () => {
+    it('should return 200 and say hello world', async () => {
+      const server = await createServer({});
+
+      const response = await server.inject({
+        method: 'GET',
+        url: '/',
+      });
+
+      const responseJson = JSON.parse(response.payload);
+      expect(response.statusCode).toEqual(200);
+      expect(responseJson.value).toEqual('Hello world!');
+    });
   });
 });
